@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+  web:
+    build:
+       context: .
+       dockerfile: build/Dockerfile
+    container_name: docker-php8
+    working_dir: /var/www/html
+    volumes:
+      - ./volumes/php:/var/www/html
+    ports:
+      - 8081:80
+      - 8082:443
+    environment:
+      XDEBUG_MODE: debug
+  
