@@ -5,5 +5,8 @@
     "require-dev": {
         "qossmic/deptrac": "^0.18.0",
         "roave/security-advisories": "dev-latest"
+    },
+    "require": {
+        "rmccue/requests": "^2.0"
     }
 }
