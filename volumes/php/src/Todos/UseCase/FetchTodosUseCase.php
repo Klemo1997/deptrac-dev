@@ -3,21 +3,22 @@
 namespace App\Todos\UseCase;
 
 use App\Todos\Data\Todo;
+use App\Todos\Repository\RepositoryInterface;
 use App\Todos\Serializer\FetchTodosResponseSerializer;
-use WpOrg\Requests\Requests;
 
 final class FetchTodosUseCase
 {
-    public function __construct() {}
+    public function __construct(
+        private RepositoryInterface $repository
+    ) {}
 
     /**
      * @return Todo[]
      */
     public function fetch(): array
     {
-        $headers = ['Accept' => 'application/json'];
-        $request = Requests::get('https://jsonplaceholder.typicode.com/todos', $headers);
+        $response = $this->repository->fetchTodos();
 
-        return (new FetchTodosResponseSerializer())->deserialize($request->body);
+        return (new FetchTodosResponseSerializer())->deserialize($response);
     }
 }

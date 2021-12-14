@@ -1,11 +1,9 @@
 <?php
 
-use App\Todos\UseCase\FetchTodosUseCase;
+use App\Todos\Factory\FetchTodoUseCaseFactory;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$use_case = new FetchTodosUseCase();
-
-$todos = $use_case->fetch();
+$todos = (new FetchTodoUseCaseFactory)->getInstance()->fetch();
 
 echo $todos[0]->getId();
