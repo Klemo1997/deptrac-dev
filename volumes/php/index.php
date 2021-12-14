@@ -1,9 +1,11 @@
 <?php
 
+use App\Todos\UseCase\FetchTodosUseCase;
+
 require __DIR__ . '/vendor/autoload.php';
 
-$headers = ['Accept' => 'application/json'];
-$options = ['auth' => ['user', 'pass']];
-$request = WpOrg\Requests\Requests::get('https://jsonplaceholder.typicode.com/todos/1', $headers, $options);
+$use_case = new FetchTodosUseCase();
 
-echo $request->body;
+$todos = $use_case->fetch();
+
+echo $todos[0]->getId();
